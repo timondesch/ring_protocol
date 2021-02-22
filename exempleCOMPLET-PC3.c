@@ -11,14 +11,14 @@
 #define ADRESSE_EMETTEUR	"127.0.0.1" 
 #define ADRESSE_RECEPTEUR	"127.0.0.1"
 #define PORT_RECEPTION		1921
-#define PORT_EMISSION		1990
+#define PORT_EMISSION		1920
 #define LONGUEUR_ADRESSE	16
 #define LONGUEUR_MESSAGE	121
 #define ADRESSE_USER		'C'
 
 typedef struct paquet
 {
-	char adresse[LONGUEUR_ADRESSE];
+	char adresse;
 	char source[LONGUEUR_ADRESSE];
 	int type;
 	int index;
@@ -56,7 +56,7 @@ int main (int argc, char **argv)
 	printf("Touche d pour demarrer...\n");
   	while (getchar() != 'd'); /* temporisation */
 
-	printf("PC2 demarre ...\n\n");
+	printf("PC3 demarre ...\n\n");
 
 	/*boucle en reception*/
 	do
@@ -65,7 +65,7 @@ int main (int argc, char **argv)
 
 		recoit(priseReception, buffer, sizeof(buffer)-1);
 
-		sscanf(buffer, "%15s%120s", &p.adresse, &p.message);
+		sscanf(buffer, "%c%120s", &p.adresse, &p.message);
 
 		traitePaquet(&p);
 

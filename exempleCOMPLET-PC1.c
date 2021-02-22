@@ -18,7 +18,7 @@
 
 typedef struct paquet
 {
-	char adresse[LONGUEUR_ADRESSE];
+	char adresse;
 	char source[LONGUEUR_ADRESSE];
 	int type;
 	int index;
@@ -76,7 +76,7 @@ int main (int argc, char **argv)
 
 		memset (buffer, '\0', sizeofbuffer);
 
-		sprintf(buffer, "%15s%120s", ADRESSE_RECEPTEUR, "nouveauBlabla");
+		sprintf(buffer, "%c%120s", ADRESSE_RECEPTEUR, "nouveauBlabla");
 
 		envoie(priseEmission, buffer, strlen(buffer));
 

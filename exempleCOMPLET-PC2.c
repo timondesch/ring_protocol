@@ -19,7 +19,7 @@
 
 typedef struct paquet
 {
-	char adresse[LONGUEUR_ADRESSE];
+	char adresse;
 	char source[LONGUEUR_ADRESSE];
 	int type;
 	int index;
@@ -27,9 +27,9 @@ typedef struct paquet
 } Paquet;
 /* Paquet <=> struct paquet */  
 
-void traitePaquet(Paquet *p)
+void traitePaquet(Paquet *p, int priseem)
 {
-	char buffer[LONGUEUR_MESSAGE];
+	char buffer[LONGUEUR_MESSAGE+1];
 
 	if (ADRESSE_USER == p->adresse)
 	/* si je suis le destinataire du paquet */
@@ -41,7 +41,12 @@ void traitePaquet(Paquet *p)
 	else
 		/* sinon */
 		printf("Je ne suis pas le destinataire. \n");
-		printf("Message pour %s : %s\n\n", p->adresse, p->message);
+		printf("Message pour %c : %s\n\n", p->adresse, p->message);
+		printf("test1\n");
+		sprintf(buffer, "%c%120s", 'C', "blablabla");
+		printf("test2\n");
+		sprintf(buffer, "%c%120s", 'C', "blablabla");
+		envoie(priseem, buffer, strlen(buffer));
 }
 
 int main (int argc, char **argv)
@@ -66,12 +71,11 @@ int main (int argc, char **argv)
 
 		recoit(priseReception, buffer, sizeof(buffer)-1);
 
-		sscanf(buffer, "%15s%120s", &p.adresse, &p.message);
+		sscanf(buffer, "%c%120s", &p.adresse, &p.message);
 
-		traitePaquet(&p);
+		traitePaquet(&p, priseEmission);
 
 	} while (1); /* boucle infinie */
 
   return 0;
 }
-
