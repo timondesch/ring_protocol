@@ -14,6 +14,7 @@
 #define PORT_EMISSION		1990
 #define LONGUEUR_ADRESSE	16
 #define LONGUEUR_MESSAGE	121
+#define ADRESSE_USER		'A'
 
 typedef struct paquet
 {
@@ -29,7 +30,7 @@ void traitePaquet(Paquet *p)
 {
 	char buffer[LONGUEUR_MESSAGE];
 
-	if (strcmp(ADRESSE_EMETTEUR, p->adresse) == 0)
+	if (ADRESSE_USER == p->adresse)
 	/* si je suis le destinataire du paquet */
 	{
 		printf("message : ");
@@ -57,7 +58,7 @@ int main (int argc, char **argv)
 	printf("Touche d pour demarrer...\n");
   	while (getchar() != 'd'); /* temporisation */
 
-	sprintf(buffer, "%15s%120s", ADRESSE_RECEPTEUR, "blablabla");
+	sprintf(buffer, "%c%120s", 'C', "blablabla");
 	envoie(priseEmission, buffer, strlen(buffer));
 	/* ex. remplissage 1er paquet puis emission */
 

@@ -10,12 +10,11 @@
 
 #define ADRESSE_EMETTEUR	"127.0.0.1" 
 #define ADRESSE_RECEPTEUR	"127.0.0.1"
-#define PORT_RECEPTION		1990
-#define PORT_EMISSION		1921
+#define PORT_RECEPTION		1921
+#define PORT_EMISSION		1990
 #define LONGUEUR_ADRESSE	16
 #define LONGUEUR_MESSAGE	121
-#define ADRESSE_USER		'B'
-
+#define ADRESSE_USER		'C'
 
 typedef struct paquet
 {

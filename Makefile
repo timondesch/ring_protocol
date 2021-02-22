@@ -16,13 +16,15 @@ SOURCES_ALL	= \
 	\
 	exempleCOMPLET-PC2.c\
 	\
+	exempleCOMPLET-PC3.c\
+	\
 	primitives.h\
 	\
 	Makefile
 
 ARCHIVE_NAME = Exemple-2proc-UDP-structPaquet.tgz
 
-all: exempleCOMPLET-PC1 exempleCOMPLET-PC2 primitives.a $(ARCHIVE_NAME)
+all: exempleCOMPLET-PC1 exempleCOMPLET-PC2 exempleCOMPLET-PC3 primitives.a $(ARCHIVE_NAME)
 
 clean:
 	rm -f *.a *.o core
@@ -34,6 +36,9 @@ exempleCOMPLET-PC1: exempleCOMPLET-PC1.o primitives.a
 	$(CC) -o $@ $^
 
 exempleCOMPLET-PC2: exempleCOMPLET-PC2.o primitives.a
+	$(CC) -o $@ $^
+
+exempleCOMPLET-PC3: exempleCOMPLET-PC3.o primitives.a
 	$(CC) -o $@ $^
 
 primitives.a: envoie.o recoit.o creePriseEmission.o creePriseReception.o
