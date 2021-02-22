@@ -2,7 +2,7 @@
  * creePriseEmission.c
  * Ouverture d'une socket UDP et "connexion"
  *
- * Travaux Pratiques réseau SILR 1
+ * Travaux Pratiques rï¿½seau SILR 1
  * Nicolas Normand
  * 1999-2001
  */
@@ -17,41 +17,41 @@
 
 int creePriseEmission (char *server, int port)
 {
-    int			sock;
-    struct sockaddr_in	address;
-    struct hostent     *hp;
+    int sock;
+    struct sockaddr_in address;
+    struct hostent *hp;
 
 /*
- * Création d'une socket UDP :
+ * Crï¿½ation d'une socket UDP :
  * PF_INET : famille de protocoles Internet
  * SOCK_DGRAM : communication par datagrammes
  * 0 : protocole UDP implicite (car inet + dgram)
  */
     if ((sock = socket (AF_INET, SOCK_DGRAM, 0)) == -1)
     {
-	perror ("creerPriseEmission");
-	exit (1);
+	    perror ("creerPriseEmission");
+	    exit (1);
     }
 
 /*
- * Résolution d'adresse à partir du nom de l'hôte
+ * Rï¿½solution d'adresse ï¿½ partir du nom de l'hï¿½te
  */
     hp = gethostbyname(server);
     if (hp == 0)
     {
-	perror ("creerPriseEmission");
-	exit (1);
+	    perror ("creerPriseEmission");
+	    exit (1);
     }
 
 /*
- * Création d'une structure d'adresse de socket
+ * Crï¿½ation d'une structure d'adresse de socket
  *
  * sin_family = AF_INET : famille d'adresses Internet
  *
- * sin_addr.s_addr : on récupère l'adresse donnée par gethostbyname
+ * sin_addr.s_addr : on rï¿½cupï¿½re l'adresse donnï¿½e par gethostbyname
  *
  * sin_port = htons (port) : port destinataire,
- *   conversion au format reseau (big endian) du numéro de port,
+ *   conversion au format reseau (big endian) du numï¿½ro de port,
  *   htons : host to network short integer)
  */
     memset (&address, 0, sizeof (address));
@@ -67,8 +67,8 @@ int creePriseEmission (char *server, int port)
 		 (struct sockaddr*) &address,
 		 sizeof (struct sockaddr_in)) == -1)
     {
-	perror ("creerPriseEmission");
-	exit (1);
+	    perror ("creerPriseEmission");
+	    exit (1);
     }
 
     return sock;

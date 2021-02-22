@@ -18,6 +18,9 @@
 typedef struct paquet
 {
 	char adresse[LONGUEUR_ADRESSE];
+	char source[LONGUEUR_ADRESSE];
+	int type;
+	int index;
 	char message[LONGUEUR_MESSAGE];
 } Paquet;
 /* Paquet <=> struct paquet */  
