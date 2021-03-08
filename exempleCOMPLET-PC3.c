@@ -37,10 +37,12 @@ void traitePaquet(Paquet *p)
 		printf("Le message qui m'est destine : %s \n\n", p->message);
 	
 	}
-	else
+	else 
+	{
 		/* sinon */
 		printf("Je ne suis pas le destinataire. \n");
 		printf("Message pour %s : %s\n\n", p->adresse, p->message);
+	}
 }
 
 int main (int argc, char **argv)

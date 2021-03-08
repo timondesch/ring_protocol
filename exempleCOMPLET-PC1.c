@@ -76,7 +76,7 @@ int main (int argc, char **argv)
 
 		memset (buffer, '\0', sizeofbuffer);
 
-		sprintf(buffer, "%c%120s", ADRESSE_RECEPTEUR, "nouveauBlabla");
+		sprintf(buffer, "%c%120s", ADRESSE_USER, "nouveauBlabla");
 
 		envoie(priseEmission, buffer, strlen(buffer));
 

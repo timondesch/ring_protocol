@@ -39,14 +39,13 @@ void traitePaquet(Paquet *p, int priseem)
 	
 	}
 	else
+	{
 		/* sinon */
 		printf("Je ne suis pas le destinataire. \n");
 		printf("Message pour %c : %s\n\n", p->adresse, p->message);
-		printf("test1\n");
-		sprintf(buffer, "%c%120s", 'C', "blablabla");
-		printf("test2\n");
-		sprintf(buffer, "%c%120s", 'C', "blablabla");
+		sprintf(buffer, "%c%120s", p->adresse, p->message);
 		envoie(priseem, buffer, strlen(buffer));
+	}
 }
 
 int main (int argc, char **argv)
