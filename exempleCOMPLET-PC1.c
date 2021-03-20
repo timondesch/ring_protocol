@@ -26,7 +26,7 @@ typedef struct paquet
 } Paquet;
 /* Paquet <=> struct paquet */  
 
-void traitePaquet(Paquet *p)
+void traitePaquet(Paquet *p, int priseem)
 {
 	char buffer[LONGUEUR_MESSAGE];
 
@@ -70,15 +70,22 @@ int main (int argc, char **argv)
 	
 	do
 	{
-		printf("Envoyer un autre paquet ? \n");
+		/* printf("Envoyer un autre paquet ? \n");
 		printf("Touche e pour continuer...\n");
-  		while (getchar() != 'e'); /* temporisation */
+  		while (getchar() != 'e'); 
 
 		memset (buffer, '\0', sizeofbuffer);
 
-		sprintf(buffer, "%c%120s", 'C', "nouveauBlabla");
+		sprintf(buffer, "%c%120s", p.adresse, "nouveauBlabla");
 
-		envoie(priseEmission, buffer, strlen(buffer));
+		envoie(priseEmission, buffer, strlen(buffer));*/
+		memset (buffer, '\0', sizeof(buffer));
+
+		recoit(priseReception, buffer, sizeof(buffer)-1);
+
+		sscanf(buffer, "%c%120s", &p.adresse, &p.message);
+
+		traitePaquet(&p, priseEmission);
 
 	} while (1); /* boucle infinie */
 
