@@ -42,15 +42,22 @@ void decision(Paquet *p, int priseem) {
 			loop = 1;
 			break;
 		case 'e':
-			printf("Quel message voulez vous faire passer?\n");
-			char message[LONGUEUR_MESSAGE] = "ahhhh\n";
-			// scanf("%[^\t\n]", message);
+			getchar();
+			printf("À quelle adresse?\n");
 			char adresse = (char)getchar();
 			getchar();
+			printf("adresse : %c\n", adresse);
+			printf("Quel message voulez vous faire passer? : \n");
+			char message[LONGUEUR_MESSAGE];
+			fgets(message, 120, stdin);
+			// scanf("%120s", message);
+			printf("message : %s\n", message);
+			// on skip l'entrée
 			loop = 1;
-			sprintf(buffer, "%c%120s", adresse, message);
+			sprintf(buffer, "%c%s", adresse, message);
+			printf("cheh : buffer : %s", buffer);
 			envoie(priseem, buffer, strlen(buffer));
-			printf("on envoie le bail\n");
+			printf("on envoie le bail ; %s\n", buffer);
 			break;
 		default:
 			printf("Veuillez entrer p ou e");
@@ -75,7 +82,8 @@ void traitePaquet(Paquet *p, int priseem)
 		/* sinon */
 		printf("Je ne suis pas le destinataire. \n");
 		printf("Message pour %c : %s\n\n", p->adresse, p->message);
-		sprintf(buffer, "%c%120s", p->adresse, p->message);
+		sprintf(buffer, "%c%s", p->adresse, p->message);
+		// sprintf(buffer, "%c%120s", p->adresse, p->message);
 		envoie(priseem, buffer, strlen(buffer));
 	}
 }
@@ -102,7 +110,9 @@ int main (int argc, char **argv)
 
 		recoit(priseReception, buffer, sizeof(buffer)-1);
 
+		// sscanf(buffer, "%c%120[0-9a-zA-Z ]", &p.adresse, &p.message);
 		sscanf(buffer, "%c%120s", &p.adresse, &p.message);
+		printf("recu : okkk : %s\n", p.message);
 
 		traitePaquet(&p, priseEmission);
 
